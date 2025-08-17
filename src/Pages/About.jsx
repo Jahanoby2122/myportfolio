@@ -204,43 +204,8 @@ const About = () => {
               variants={container}
               className="flex flex-wrap gap-4 pt-4"
             >
-              <motion.a
-                href="#"
-                className="flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white px-6 py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-blue-500/20"
-                whileHover={{ y: -3, scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                variants={item}
-              >
-                <FaFileDownload className="text-lg" />
-                Download Resume
-              </motion.a>
-              
-              <motion.div 
-                className="flex gap-3"
-                variants={item}
-              >
-                {[
-                  { icon: <FaGithub />, color: 'hover:bg-gray-700', tooltip: 'GitHub' },
-                  { icon: <FaLinkedin />, color: 'hover:bg-blue-700', tooltip: 'LinkedIn' },
-                  { icon: <FaTwitter />, color: 'hover:bg-sky-600', tooltip: 'Twitter' },
-                  { icon: <FaGlobe />, color: 'hover:bg-green-600', tooltip: 'Portfolio' }
-                ].map((social, index) => (
-                  <motion.a 
-                    key={index}
-                    href="#" 
-                    className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white hover:text-white transition-all relative group"
-                    whileHover={{ y: -5 }}
-                    whileTap={{ scale: 0.9 }}
-                    style={{ backgroundColor: social.color.replace('hover:', '') }}
-                    variants={item}
-                  >
-                    {social.icon}
-                    <span className="absolute bottom-full mb-2 hidden group-hover:block bg-gray-900 text-white text-xs py-1 px-2 rounded whitespace-nowrap">
-                      {social.tooltip}
-                    </span>
-                  </motion.a>
-                ))}
-              </motion.div>
+      
+        
             </motion.div>
           </motion.div>
         </div>

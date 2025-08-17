@@ -1,0 +1,68 @@
+[
+  {
+    "id": "c6d58e5c-2c64-4a3d-9b11-fad5e7f9e4e5",
+    "name": "Local Market",
+    "slug": "local-market",
+    "description": "A full-featured web application for browsing and managing local market products with detailed views, interactive price trends, and a responsive design.",
+    "keyFeatures": [
+      "Browse and filter all products",
+      "Detailed product information with images",
+      "Interactive price trend visualization",
+      "User-friendly and responsive home interface",
+      "Secure and scalable backend"
+    ],
+    "technology": ["React", "Express", "MongoDB"],
+    "images": [
+      { "url": "https://i.ibb.co.com/27HjvHs4/allproduct.png", "alt": "All products page" },
+      { "url": "https://i.ibb.co.com/twkLV7R5/details.png", "alt": "Product details page" },
+      { "url": "https://i.ibb.co.com/hRjwqGpR/home.png", "alt": "Home page" }
+    ],
+    "links": {
+      "project": "https://fresh-market-33767.web.app/",
+      "repo": "https://github.com/Akashahamed2122/local-market-client"
+    }
+  },
+  {
+    "id": "9f871b13-9b1d-48a5-8bfc-b1de6eb6f33d",
+    "name": "BookPress",
+    "slug": "bookpress",
+    "description": "An intuitive online platform to browse and read books, providing a modern, responsive interface for readers.",
+    "keyFeatures": [
+      "Book listing with cover images",
+      "Detailed book view with description",
+      "Responsive home and details page",
+      "Modern UI for easy navigation",
+      "Search and category filtering"
+    ],
+    "technology": ["React", "Express", "MongoDB"],
+    "images": [
+      { "url": "https://i.ibb.co.com/DHm0Mptb/details.png", "alt": "Book details page" },
+      { "url": "https://i.ibb.co.com/j9S56ZBK/home.png", "alt": "BookPress home page" }
+    ],
+    "links": {
+      "project": "https://virtual-bookshelf-9106f.web.app/",
+      "repo": "https://github.com/Akashahamed2122/vertiul-book-clint"
+    }
+  },
+  {
+    "id": "e4f9a471-4291-4b3f-b6e4-2b5c4f053c2e",
+    "name": "Demo Project",
+    "slug": "demo-project",
+    "description": "A sample demo project showcasing the JSON structure for portfolio integration. Designed with a clean, minimal interface.",
+    "keyFeatures": [
+      "Clean and minimal design",
+      "Mobile responsive layout",
+      "Basic CRUD functionality",
+      "Demo-ready setup for learning"
+    ],
+    "technology": ["React", "Node.js", "SQLite"],
+    "images": [
+      { "url": "https://picsum.photos/id/1040/1200/800", "alt": "Demo project screenshot 1" },
+      { "url": "https://picsum.photos/id/1041/1200/800", "alt": "Demo project screenshot 2" }
+    ],
+    "links": {
+      "project": "https://example.com/demo-project",
+      "repo": "https://github.com/yourname/demo-project"
+    }
+  }
+]

@@ -4,6 +4,8 @@ import { Outlet } from 'react-router';
 import Banner from '../components/Banner';
 import About from '../Pages/About';
 import Skills from '../Pages/Skills';
+import Contact from '../Pages/Contact';
+import Projects from '../Pages/Projects';
 
 const MainLayout = () => {
     return (
@@ -12,7 +14,8 @@ const MainLayout = () => {
             <Banner></Banner>
             <About></About>
             <Skills></Skills>
-            <Outlet></Outlet>
+            <Projects></Projects>
+            <Contact></Contact>
         </div>
     );
 };
