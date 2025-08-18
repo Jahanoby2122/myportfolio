@@ -29,15 +29,18 @@ const Projects = () => {
   }, []);
 
   return (
-    <section id="projects" className="py-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <section
+      id="projects"
+      className="py-16 bg-gray-900 text-white transition-colors duration-300"
+    >
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800 dark:text-white">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
             My Projects
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Here are some of my featured projects. Each one represents unique challenges
-            and solutions I've implemented in my development journey.
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+            Here are some of my featured projects. Each one represents unique
+            challenges and solutions I've implemented in my development journey.
           </p>
         </div>
 
@@ -48,33 +51,30 @@ const Projects = () => {
         ) : error ? (
           <div className="text-center py-10">
             <p className="text-red-500">{error}</p>
-            <button 
-              onClick={() => window.location.reload()} 
+            <button
+              onClick={() => window.location.reload()}
               className="mt-4 px-4 py-2 bg-amber-500 text-white rounded hover:bg-amber-600 transition-colors"
             >
               Retry
             </button>
           </div>
         ) : (
-          <>
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {projects.map((project) => (
-                <ProjectCard 
-                  key={project.id} 
-                  project={project} 
-                  onViewDetails={() => setSelectedProject(project)}
-                />
-              ))}
-            </div>
-
-          </>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {projects.map((project) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                onViewDetails={() => setSelectedProject(project)}
+              />
+            ))}
+          </div>
         )}
 
         {/* Modal */}
         {selectedProject && (
-          <ProjectModal 
-            project={selectedProject} 
-            onClose={() => setSelectedProject(null)} 
+          <ProjectModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
           />
         )}
       </div>

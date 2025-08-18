@@ -46,7 +46,7 @@ const Skills = () => {
   const [activeTab, setActiveTab] = useState("Frontend");
 
   return (
-    <section id="skills" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
+    <section id="skills" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gray-900 text-white">
       <style>
         {`
           @keyframes gradientMove {
@@ -64,27 +64,27 @@ const Skills = () => {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <p className="text-blue-500 dark:text-blue-400 font-medium mb-3 tracking-wider">
+          <p className="text-blue-400 font-medium mb-3 tracking-wider">
             TECHNICAL SKILLSET
           </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-3">
-            My <span className="text-blue-600 dark:text-blue-400">Development</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3">
+            My <span className="text-blue-400">Development</span> Skills
           </h2>
-          <h3 className="text-xl sm:text-2xl text-gray-600 dark:text-gray-300">
+          <h3 className="text-xl sm:text-2xl text-gray-300">
             Tools & Technologies I Work With
           </h3>
         </div>
 
         {/* Tabs */}
-        <div className="flex justify-center gap-4 mb-10">
+        <div className="flex flex-wrap justify-center gap-3 mb-10">
           {Object.keys(skillCategories).map(category => (
             <button
               key={category}
               onClick={() => setActiveTab(category)}
-              className={`px-5 py-2 rounded-full font-medium transition-all ${
+              className={`px-5 py-2 rounded-full font-medium transition-all duration-300 ${
                 activeTab === category
-                  ? "bg-blue-600 text-white shadow-lg"
-                  : "bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700"
+                  ? "bg-blue-600 text-white shadow-md shadow-blue-500/20"
+                  : "bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700"
               }`}
             >
               {category}
@@ -94,7 +94,7 @@ const Skills = () => {
 
         {/* Skills Grid */}
         <motion.div
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
@@ -111,17 +111,17 @@ const Skills = () => {
             >
               {/* Animated Gradient Border */}
               <div
-                className="absolute -inset-0.5 rounded-2xl p-[2px]"
+                className="absolute -inset-0.5 rounded-2xl p-[2px] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
                 style={{
-                  background: 'linear-gradient(270deg, #4f46e5, #9333ea, #ec4899, #f97316)',
-                  backgroundSize: '600% 600%',
-                  animation: 'gradientMove 8s ease infinite',
+                  background: 'linear-gradient(270deg, #3b82f6, #6366f1, #8b5cf6, #d946ef)',
+                  backgroundSize: '400% 400%',
+                  animation: 'gradientMove 6s ease infinite',
                   borderRadius: '1rem'
                 }}
               ></div>
 
               {/* Card Content */}
-              <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl p-6 flex flex-col items-center h-full transition-all duration-500 group-hover:shadow-xl">
+              <div className="relative bg-gray-800 rounded-2xl p-6 flex flex-col items-center h-full transition-all duration-300 group-hover:shadow-lg border border-gray-700">
                 <div className="w-16 h-16 mb-4 flex items-center justify-center">
                   <motion.img
                     src={skill.icon}
@@ -131,7 +131,7 @@ const Skills = () => {
                     transition={{ type: "spring", stiffness: 200 }}
                   />
                 </div>
-                <p className="text-gray-800 dark:text-gray-200 font-medium text-center">
+                <p className="text-gray-200 font-medium text-center">
                   {skill.name}
                 </p>
               </div>
