@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link, NavLink, useNavigate } from "react-router"; // ✅
+import { Link, useNavigate } from "react-router";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [currentHash, setCurrentHash] = useState(window.location.hash);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -12,102 +13,123 @@ const Navbar = () => {
       setScrolled(window.scrollY > 10);
     };
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    const handleHashChange = () => {
+      setCurrentHash(window.location.hash);
+    };
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("hashchange", handleHashChange);
+    };
   }, []);
 
   const toggleDrawer = () => setIsOpen(!isOpen);
   const closeDrawer = () => setIsOpen(false);
 
-  // ✅ Menu items list
   const menuItems = [
-    { path: "/#home", label: "Home" },
-    { path: "/#about", label: "About" },
-    { path: "/#skills", label: "Skills" },
-    { path: "/#projects", label: "Projects" },
-    { path: "/#contact", label: "Contact" }
+    { path: "#home", label: "Home" },
+    { path: "#about", label: "About" },
+    { path: "#skills", label: "Skills" },
+    { path: "#projects", label: "Projects" },
+    { path: "#contact", label: "Contact" },
   ];
 
-  // ✅ Smooth Scroll Function (সব section এর জন্য)
   const handleNavClick = (path) => {
-    navigate(path);
+    navigate(`/${path}`); // navigate with hash
     closeDrawer();
 
-    const sectionId = path.replace("/#", ""); // "/#about" → "about"
+    const sectionId = path.replace("#", "");
     const section = document.getElementById(sectionId);
 
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
-    } else if (path === "/#home" || path === "/") {
+    } else {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
+
+    setCurrentHash(path);
   };
 
-  // ✅ Links mapping with smooth scroll
-  const links = menuItems.map((item) => (
-    <li key={item.path} className="list-none">
-      <NavLink
-        to={item.path}
-        onClick={() => handleNavClick(item.path)} // ✅ updated to smooth scroll
-        className={({ isActive }) =>
-          isActive
-            ? "relative text-blue-400 font-medium"
-            : "relative text-gray-300 hover:text-white transition-colors duration-300"
-        }
-      >
-        {item.label}
-      </NavLink>
-    </li>
-  ));
+  const renderLinks = (isMobile = false) =>
+    menuItems.map((item) => {
+      // Home special case
+      const isActive =
+        item.path === "#home"
+          ? currentHash === "" || currentHash === "#home"
+          : currentHash === item.path;
+
+      return (
+        <motion.li
+          key={item.path}
+          whileHover={isMobile ? { x: 5 } : {}}
+          transition={{ type: "spring", stiffness: 300 }}
+          className="list-none"
+        >
+          <button
+            onClick={() => handleNavClick(item.path)}
+            className={`${
+              isMobile
+                ? "block px-5 py-3 rounded-lg text-lg transition-all duration-300 w-full text-left"
+                : "relative px-3 py-2 rounded-md transition-all duration-300"
+            } ${
+              isActive
+                ? "text-white bg-blue-600/20 font-medium border-l-4 border-blue-400"
+                : "text-gray-300 hover:text-white hover:bg-gray-700/40"
+            }`}
+          >
+            {item.label}
+          </button>
+        </motion.li>
+      );
+    });
 
   return (
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-gray-900/95 backdrop-blur-md py-2 shadow-lg"
-          : "bg-gray-900/80 backdrop-blur-sm py-3"
+        scrolled ? "bg-gray-900 shadow-lg" : "bg-gray-900"
       }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* ✅ Main Flex — 3 Section */}
-        <div className="flex items-center justify-between h-16">
-          
-          {/* ✅ Left - Logo */}
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex-shrink-0"
-          >
-            <Link to="/#home" onClick={() => handleNavClick("/#home")}> {/* ✅ smooth scroll */}
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+        <div className="flex items-center justify-between h-16 md:h-20">
+          {/* Logo */}
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex items-center">
+            <Link
+              to="/#home"
+              onClick={() => handleNavClick("#home")}
+              className="flex items-center gap-2"
+            >
+              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center">
+                <span className="text-white font-bold text-sm">A</span>
+              </div>
+              <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
                 Akash
               </span>
             </Link>
           </motion.div>
 
-          {/* ✅ Middle - Nav Links */}
+          {/* Desktop Links */}
           <div className="hidden lg:flex justify-center flex-1">
-            <ul className="flex gap-8">{links}</ul>
+            <ul className="flex gap-2 text-md font-medium">{renderLinks()}</ul>
           </div>
 
-          {/* ✅ Right - Resume Button */}
+          {/* Resume Button (Desktop) */}
           <div className="hidden lg:flex items-center">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="relative group">
               <Link to="/resume">
-                <button className="px-6 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
-                  Resume
+                <button className="px-6 py-2.5 rounded-lg font-medium text-white bg-gradient-to-r from-blue-500 to-blue-600 shadow-lg hover:shadow-blue-500/30 transition-all duration-300 relative overflow-hidden">
+                  <span className="relative z-10">Resume</span>
                 </button>
               </Link>
             </motion.div>
           </div>
 
-          {/* ✅ Mobile Hamburger */}
+          {/* Mobile Hamburger */}
           <div className="lg:hidden">
             <motion.button
               onClick={toggleDrawer}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white focus:outline-none"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-white hover:bg-gray-800 transition"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -122,11 +144,7 @@ const Navbar = () => {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d={
-                    isOpen
-                      ? "M6 18L18 6M6 6l12 12"
-                      : "M4 6h16M4 12h16M4 18h16"
-                  }
+                  d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
                 />
               </svg>
             </motion.button>
@@ -134,7 +152,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* ✅ Mobile Sidebar */}
+      {/* Mobile Sidebar */}
       <AnimatePresence>
         {isOpen && (
           <>
@@ -142,7 +160,7 @@ const Navbar = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+              className="fixed inset-0 bg-black/80 z-40"
               onClick={closeDrawer}
             />
 
@@ -151,43 +169,34 @@ const Navbar = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-              className="fixed top-0 right-0 h-full w-64 bg-gray-900 shadow-xl z-50 p-6"
+              className="fixed top-0 right-0 h-full w-80 max-w-full bg-gray-900 shadow-2xl border-l border-blue-800/40 z-50 p-6 flex flex-col"
             >
-              <div className="flex justify-end">
-                <button
-                  className="text-gray-400 hover:text-white text-2xl"
-                  onClick={closeDrawer}
-                >
+              <div className="flex items-center justify-between mb-10">
+                <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center">
+                    <span className="text-white font-bold text-sm">A</span>
+                  </div>
+                  <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+                    Akash
+                  </span>
+                </motion.div>
+                <button className="text-gray-400 hover:text-white text-3xl p-1" onClick={closeDrawer}>
                   &times;
                 </button>
               </div>
 
-              <div className="mt-12 flex flex-col h-[calc(100%-3rem)]">
-                <ul className="space-y-6">
-                  {menuItems.map((item) => (
-                    <li key={item.path} className="list-none">
-                      <NavLink
-                        to={item.path}
-                        onClick={() => handleNavClick(item.path)} // ✅ smooth scroll in mobile
-                        className={({ isActive }) =>
-                          isActive
-                            ? "relative text-blue-400 font-medium"
-                            : "relative text-gray-300 hover:text-white transition-colors duration-300"
-                        }
-                      >
-                        {item.label}
-                      </NavLink>
-                    </li>
-                  ))}
-                </ul>
+              <ul className="space-y-3 flex-1">{renderLinks(true)}</ul>
 
-                <div className="mt-auto">
-                  <Link to="/resume" onClick={closeDrawer}>
-                    <button className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
-                      RESUME
-                    </button>
-                  </Link>
-                </div>
+              <div className="pt-6">
+                <Link to="/resume" onClick={closeDrawer}>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full py-3.5 rounded-lg font-medium text-white bg-gradient-to-r from-blue-500 to-blue-600 shadow-lg hover:shadow-blue-500/30 transition-all duration-300 relative overflow-hidden"
+                  >
+                    <span className="relative z-10">Download Resume</span>
+                  </motion.button>
+                </Link>
               </div>
             </motion.div>
           </>
