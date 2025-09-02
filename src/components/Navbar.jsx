@@ -54,7 +54,6 @@ const Navbar = () => {
 
   const renderLinks = (isMobile = false) =>
     menuItems.map((item) => {
-      // Home special case
       const isActive =
         item.path === "#home"
           ? currentHash === "" || currentHash === "#home"
@@ -117,11 +116,16 @@ const Navbar = () => {
           {/* Resume Button (Desktop) */}
           <div className="hidden lg:flex items-center">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="relative group">
-              <Link to="/resume">
+              <a
+                href="https://drive.google.com/uc?export=download&id=1sOcy1cOSIKc823yqGD23kskZbvNDa_Lv"
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <button className="px-6 py-2.5 rounded-lg font-medium text-white bg-gradient-to-r from-blue-500 to-blue-600 shadow-lg hover:shadow-blue-500/30 transition-all duration-300 relative overflow-hidden">
                   <span className="relative z-10">Resume</span>
                 </button>
-              </Link>
+              </a>
             </motion.div>
           </div>
 
@@ -188,7 +192,14 @@ const Navbar = () => {
               <ul className="space-y-3 flex-1">{renderLinks(true)}</ul>
 
               <div className="pt-6">
-                <Link to="/resume" onClick={closeDrawer}>
+                <Link
+                  href="https://drive.google.com/uc?export=download&id=1sOcy1cOSIKc823yqGD23kskZbvNDa_Lv"
+                  download
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={closeDrawer}
+                  className="block"
+                >
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}

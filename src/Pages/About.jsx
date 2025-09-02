@@ -142,7 +142,7 @@ const About = () => {
                 className="text-gray-300 text-lg leading-relaxed mb-6"
                 whileHover={{ scale: 1.005 }}
               >
-                I'm <span className="text-blue-300 font-medium">Akash Ahamed</span>, a dedicated MERN stack developer with 2+ years of experience crafting robust web applications. My expertise spans the entire development lifecycle, from conceptualization to deployment, with a focus on creating efficient, scalable solutions that deliver exceptional user experiences.
+                I'm <span className="text-blue-300 font-medium">Jahanoby Ahamed</span>, a dedicated MERN stack developer with 2+ years of experience crafting robust web applications. My expertise spans the entire development lifecycle, from conceptualization to deployment, with a focus on creating efficient, scalable solutions that deliver exceptional user experiences.
               </motion.p>
             </motion.div>
 

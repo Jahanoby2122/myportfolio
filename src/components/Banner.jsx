@@ -3,7 +3,6 @@ import {
   FaFacebookF,
   FaLinkedinIn,
   FaTwitter,
-  FaInstagram,
   FaGithub,
   FaDownload,
   FaPaperPlane,
@@ -12,6 +11,7 @@ import { Typewriter } from 'react-simple-typewriter';
 import img from '../assets/hi.json';
 import Lottie from "lottie-react";
 import { motion } from 'framer-motion';
+import { Link as ScrollLink } from 'react-scroll';
 
 const Banner = () => {
   // Social media links
@@ -38,7 +38,7 @@ const Banner = () => {
       icon: <FaGithub className="text-sm" />, 
       color: 'hover:bg-[#333]', 
       label: 'GitHub',
-      url: 'https://github.com/akashahamed2122'
+      url: 'https://github.com/jahanoby2122'
     },
   ];
 
@@ -87,7 +87,7 @@ const Banner = () => {
           animate="visible"
           variants={containerVariants}
         >
-          {/* Left Side - Personal Info (First on mobile) */}
+          {/* Left Side - Personal Info */}
           <motion.div 
             className="space-y-6 md:space-y-8 order-1"
             variants={containerVariants}
@@ -159,21 +159,31 @@ const Banner = () => {
               className="flex flex-wrap gap-3 sm:gap-4 pt-2"
               variants={itemVariants}
             >
-              <motion.a 
-                href="#contact"
-                className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold px-5 py-2 sm:px-6 sm:py-2 md:px-8 md:py-3 rounded-lg flex items-center gap-2 shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              {/* Smooth scroll contact button */}
+              <ScrollLink 
+                to="contact"
+                smooth={true}
+                duration={600}
               >
-                <FaPaperPlane className="text-xs sm:text-sm" /> Contact Me
-              </motion.a>
-              <motion.button 
+                <motion.button 
+                  className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold px-5 py-2 sm:px-6 sm:py-2 md:px-8 md:py-3 rounded-lg flex items-center gap-2 shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <FaPaperPlane className="text-xs sm:text-sm" /> Contact Me
+                </motion.button>
+              </ScrollLink>
+
+              {/* Professional CV Download button */}
+              <motion.a 
+                href="https://drive.google.com/uc?export=download&id=1sOcy1cOSIKc823yqGD23kskZbvNDa_Lv"
+                download="Jahanoby-Islam-CV.pdf"
                 className="bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-800 hover:to-gray-900 text-white font-semibold px-5 py-2 sm:px-6 sm:py-2 md:px-8 md:py-3 rounded-lg flex items-center gap-2 shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <FaDownload className="text-xs sm:text-sm" /> Download CV
-              </motion.button>
+              </motion.a>
             </motion.div>
           </motion.div>
 
@@ -186,7 +196,7 @@ const Banner = () => {
             <div className="absolute -top-20 -left-20 w-40 h-40 bg-blue-500 rounded-full filter blur-3xl opacity-10"></div>
             <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-purple-500 rounded-full filter blur-3xl opacity-10"></div>
             
-            {/* Top Bar: Dots + Profile Image */}
+            {/* Top Bar */}
             <div className="flex justify-between items-center mb-3 md:mb-4 pb-2 border-b border-blue-800/50">
               <div className="flex space-x-2">
                 <span className="w-2 h-2 sm:w-3 sm:h-3 bg-red-500 rounded-full"></span>
