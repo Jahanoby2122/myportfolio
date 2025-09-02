@@ -159,7 +159,7 @@ const About = () => {
                   <HiOutlineMail className="text-blue-400 mr-3 text-xl" />
                   <h4 className="text-white font-medium">Email</h4>
                 </div>
-                <p className="text-gray-300 text-sm">akshahamed909087@gmail.com</p>
+                <p className="text-gray-300 text-sm">jahanoby2122@gmail.com</p>
               </motion.div>
 
               <motion.div 

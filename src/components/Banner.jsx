@@ -103,7 +103,7 @@ const Banner = () => {
 
             <motion.div variants={itemVariants}>
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
-                I'm <span className="text-white">Akash Ahamed</span>
+                I'm <span className="text-white">Jahanoby Islam</span>
               </h1>
             </motion.div>
 
@@ -206,7 +206,7 @@ const Banner = () => {
             <pre className="text-xs sm:text-sm md:text-base mt-2 sm:mt-4 md:mt-6 overflow-x-auto">
               <code className="text-green-400 font-mono">
                 <span className="text-red-500">const</span> programmer = {'{'}{'\n'}
-                &nbsp;&nbsp;name: <span className="text-blue-300">'Akash Ahamed'</span>,{'\n'}
+                &nbsp;&nbsp;name: <span className="text-blue-300">'jahanoby Ahamed'</span>,{'\n'}
                 &nbsp;&nbsp;skills: [<span className="text-blue-300">'React'</span>,{' '}
                 <span className="text-blue-300">'Next.js'</span>,{' '}
                 <span className="text-blue-300">'Node.js'</span>,{' '}
