@@ -46,8 +46,8 @@
   },
   {
     "id": "e4f9a471-4291-4b3f-b6e4-2b5c4f053c2e",
-    "name": "Demo Project",
-    "slug": "demo-project",
+    "name": "Gardyan",
+    "slug": "Gardyan-project",
     "description": "A sample demo project showcasing the JSON structure for portfolio integration. Designed with a clean, minimal interface.",
     "keyFeatures": [
       "Clean and minimal design",
@@ -61,7 +61,7 @@
       { "url": "https://picsum.photos/id/1041/1200/800", "alt": "Demo project screenshot 2" }
     ],
     "links": {
-      "project": "https://example.com/demo-project",
+      "project": "https://assignment-10-4461d.web.app",
       "repo": "https://github.com/yourname/demo-project"
     }
   }

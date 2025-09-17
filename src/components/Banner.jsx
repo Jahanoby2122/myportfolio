@@ -42,6 +42,17 @@ const Banner = () => {
     },
   ];
 
+  // Function to handle CV download
+  const handleDownloadCV = () => {
+    // Create a temporary anchor element
+    const link = document.createElement('a');
+    link.href = 'https://drive.google.com/uc?export=download&id=1t5L9o2mytrW_1ZyRPeV00wJQomccM6ms';
+    link.setAttribute('download', 'Akash_Ahamed_CV.pdf');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -103,7 +114,7 @@ const Banner = () => {
 
             <motion.div variants={itemVariants}>
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
-                I'm <span className="text-white">Jahanoby Islam</span>
+                I'm <span className="text-white">Akash ahamed</span>
               </h1>
             </motion.div>
 
@@ -175,15 +186,14 @@ const Banner = () => {
               </ScrollLink>
 
               {/* Professional CV Download button */}
-              <motion.a 
-                href="https://drive.google.com/uc?export=download&id=1sOcy1cOSIKc823yqGD23kskZbvNDa_Lv"
-                download="Jahanoby-Islam-CV.pdf"
+              <motion.button 
+                onClick={handleDownloadCV}
                 className="bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-800 hover:to-gray-900 text-white font-semibold px-5 py-2 sm:px-6 sm:py-2 md:px-8 md:py-3 rounded-lg flex items-center gap-2 shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <FaDownload className="text-xs sm:text-sm" /> Download CV
-              </motion.a>
+              </motion.button>
             </motion.div>
           </motion.div>
 
@@ -216,7 +226,7 @@ const Banner = () => {
             <pre className="text-xs sm:text-sm md:text-base mt-2 sm:mt-4 md:mt-6 overflow-x-auto">
               <code className="text-green-400 font-mono">
                 <span className="text-red-500">const</span> programmer = {'{'}{'\n'}
-                &nbsp;&nbsp;name: <span className="text-blue-300">'jahanoby Ahamed'</span>,{'\n'}
+                &nbsp;&nbsp;name: <span className="text-blue-300">'Akash Ahamed'</span>,{'\n'}
                 &nbsp;&nbsp;skills: [<span className="text-blue-300">'React'</span>,{' '}
                 <span className="text-blue-300">'Next.js'</span>,{' '}
                 <span className="text-blue-300">'Node.js'</span>,{' '}

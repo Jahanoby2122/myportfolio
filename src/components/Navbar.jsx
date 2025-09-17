@@ -37,7 +37,7 @@ const Navbar = () => {
   ];
 
   const handleNavClick = (path) => {
-    navigate(`/${path}`); // navigate with hash
+    navigate(`/${path}`);
     closeDrawer();
 
     const sectionId = path.replace("#", "");
@@ -117,9 +117,8 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="relative group">
               <a
-                href="https://drive.google.com/uc?export=download&id=1sOcy1cOSIKc823yqGD23kskZbvNDa_Lv"
+                href="https://drive.google.com/uc?export=download&id=1t5L9o2mytrW_1ZyRPeV00wJQomccM6ms"
                 download
-                target="_blank"
                 rel="noopener noreferrer"
               >
                 <button className="px-6 py-2.5 rounded-lg font-medium text-white bg-gradient-to-r from-blue-500 to-blue-600 shadow-lg hover:shadow-blue-500/30 transition-all duration-300 relative overflow-hidden">
@@ -192,10 +191,9 @@ const Navbar = () => {
               <ul className="space-y-3 flex-1">{renderLinks(true)}</ul>
 
               <div className="pt-6">
-                <Link
-                  href="https://drive.google.com/uc?export=download&id=1sOcy1cOSIKc823yqGD23kskZbvNDa_Lv"
+                <a
+                  href="https://drive.google.com/uc?export=download&id=1t5L9o2mytrW_1ZyRPeV00wJQomccM6ms"
                   download
-                  target="_blank"
                   rel="noopener noreferrer"
                   onClick={closeDrawer}
                   className="block"
@@ -207,7 +205,7 @@ const Navbar = () => {
                   >
                     <span className="relative z-10">Download Resume</span>
                   </motion.button>
-                </Link>
+                </a>
               </div>
             </motion.div>
           </>
